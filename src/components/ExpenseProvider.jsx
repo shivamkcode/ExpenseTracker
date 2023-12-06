@@ -1,21 +1,25 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import ExpenseContext from './Context'
-import PropTypes from 'prop-types';
 
+// eslint-disable-next-line react/prop-types
 function ExpenseProvider({ children }) {
-    const [expense, setExpense] = useState([])
+    const [expense, setExpense] = useState(() => {
+      const localData = localStorage.getItem('expense');
+      return localData ? JSON.parse(localData) : [];
+    });
+  
+    useEffect(() => {
+      localStorage.setItem('expense', JSON.stringify(expense));
+    }, [expense]);
+  
 
     const addExpense = (name, cost) => {
         setExpense([...expense, {name, cost}])
     }
-    console.log(expense)
     return (
         <ExpenseContext.Provider value={{expense, addExpense}}>
             {children}
         </ExpenseContext.Provider>
     )
 } 
-ExpenseProvider.propTypes = {
-    children: PropTypes.node.isRequired,
-  };
 export default ExpenseProvider

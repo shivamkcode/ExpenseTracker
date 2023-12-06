@@ -2,11 +2,11 @@ import { useContext } from "react"
 import ExpenseContext from "./Context"
 
 function ExpenseList() {
-    const { expenses } = useContext(ExpenseContext);
+    const { expense } = useContext(ExpenseContext);
   
     return (
       <ul>
-        {expenses?.map((expense, index) => (
+        {expense?.map((expense, index) => (
           <li key={index}>
             {expense.name}: {expense.cost}
           </li>
