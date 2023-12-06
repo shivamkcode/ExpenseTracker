@@ -2,17 +2,18 @@ import { useContext } from "react"
 import ExpenseContext from "./Context"
 
 function ExpenseList() {
-    const { expense } = useContext(ExpenseContext);
-  
-    return (
-      <ul>
-        {expense?.map((expense, index) => (
-          <li key={index}>
-            {expense.name}: {expense.cost}
-          </li>
-        ))}
-      </ul>
-    );
-  }
+  const { expense, deleteExpense } = useContext(ExpenseContext);
+
+  return (
+    <ul>
+      {expense?.map((expense, index) => (
+        <li key={index}>
+          <span>{expense.name}: ${expense.cost}</span>
+          <button onClick={() => deleteExpense(index)}>Delete</button>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 export default ExpenseList

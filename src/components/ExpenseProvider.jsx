@@ -12,12 +12,17 @@ function ExpenseProvider({ children }) {
       localStorage.setItem('expense', JSON.stringify(expense));
     }, [expense]);
   
-
     const addExpense = (name, cost) => {
         setExpense([...expense, {name, cost}])
     }
+
+    const deleteExpense = (index) => {
+        const newExpenses = expense.filter((expense, i) => i !== index);
+        setExpense(newExpenses);
+      };
+
     return (
-        <ExpenseContext.Provider value={{expense, addExpense}}>
+        <ExpenseContext.Provider value={{expense, addExpense, deleteExpense}}>
             {children}
         </ExpenseContext.Provider>
     )
