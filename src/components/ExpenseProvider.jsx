@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react'
 import ExpenseContext from './Context'
 
-// eslint-disable-next-line react/prop-types
 function ExpenseProvider({ children }) {
     const [expense, setExpense] = useState(() => {
       const localData = localStorage.getItem('expense');

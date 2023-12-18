@@ -8,7 +8,6 @@ function AddExpenseForm() {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        
         addExpense(name, cost)
         setName('')
         setCost('')
